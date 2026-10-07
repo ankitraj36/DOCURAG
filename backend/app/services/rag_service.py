@@ -116,6 +116,7 @@ class RAGService:
             retrieved_chunks=[r.chunk_id for r in results[:settings.RERANK_TOP_K]],
         )
         db.add(assistant_msg)
+        await db.flush()
         
         # Store evaluation data
         from app.models.models import EvaluationResult

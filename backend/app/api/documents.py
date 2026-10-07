@@ -76,7 +76,7 @@ async def upload_document(
         status=DocumentStatus.PENDING,
     )
     db.add(doc)
-    await db.flush()
+    await db.commit()
     
     logger.info(f"Document uploaded: {file.filename} ({file_size} bytes) -> {file_id}")
     
@@ -215,7 +215,7 @@ async def reprocess_document(
         raise HTTPException(status_code=404, detail="Document not found")
     
     doc.status = DocumentStatus.PENDING
-    await db.flush()
+    await db.commit()
     
     background_tasks.add_task(process_document_task, document_id)
     return {"message": "Reprocessing started"}
