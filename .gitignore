@@ -32,13 +32,13 @@ frontend/build/
 Thumbs.db
 
 # Data
-data/uploads/*
-data/processed/*
-data/vectors/*
-!data/uploads/.gitkeep
-!data/processed/.gitkeep
-!data/vectors/.gitkeep
-!data/sample/
+backend/data/uploads/*
+backend/data/processed/*
+backend/data/vectors/*
+!backend/data/uploads/.gitkeep
+!backend/data/processed/.gitkeep
+!backend/data/vectors/.gitkeep
+!backend/data/sample/
 
 # Logs
 *.log

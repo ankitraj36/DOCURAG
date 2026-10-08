@@ -24,8 +24,8 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite+aiosqlite:///./data/docurag.db"
     
     # LLM
-    OPENAI_API_KEY: str = ""
-    LLM_MODEL: str = "gpt-4o"
+    GOOGLE_API_KEY: str = ""
+    LLM_MODEL: str = "gemini-3.8-flash"
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
     
     # Storage paths

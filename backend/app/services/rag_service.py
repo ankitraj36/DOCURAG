@@ -167,11 +167,11 @@ Question: {query}
 Provide a thorough answer based ONLY on the above context. Cite sources for every claim."""
         
         try:
-            if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY != "your-openai-api-key":
-                from langchain_openai import ChatOpenAI
-                llm = ChatOpenAI(
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY != "your-google-api-key":
+                from langchain_google_genai import ChatGoogleGenerativeAI
+                llm = ChatGoogleGenerativeAI(
                     model=settings.LLM_MODEL,
-                    api_key=settings.OPENAI_API_KEY,
+                    google_api_key=settings.GOOGLE_API_KEY,
                     temperature=0.1,
                 )
                 from langchain.schema import SystemMessage, HumanMessage
@@ -347,10 +347,10 @@ Provide:
 Format as structured output."""
         
         try:
-            if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY != "your-openai-api-key":
-                from langchain_openai import ChatOpenAI
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY != "your-google-api-key":
+                from langchain_google_genai import ChatGoogleGenerativeAI
                 from langchain.schema import HumanMessage
-                llm = ChatOpenAI(model=settings.LLM_MODEL, api_key=settings.OPENAI_API_KEY, temperature=0.2)
+                llm = ChatGoogleGenerativeAI(model=settings.LLM_MODEL, google_api_key=settings.GOOGLE_API_KEY, temperature=0.2)
                 response = await llm.ainvoke([HumanMessage(content=summary_prompt)])
                 summary_text = response.content
             else:
@@ -415,10 +415,10 @@ Format as structured output."""
 Create a comparison table and summary. Cite specific content from each document."""
         
         try:
-            if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY != "your-openai-api-key":
-                from langchain_openai import ChatOpenAI
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY != "your-google-api-key":
+                from langchain_google_genai import ChatGoogleGenerativeAI
                 from langchain.schema import HumanMessage
-                llm = ChatOpenAI(model=settings.LLM_MODEL, api_key=settings.OPENAI_API_KEY, temperature=0.2)
+                llm = ChatGoogleGenerativeAI(model=settings.LLM_MODEL, google_api_key=settings.GOOGLE_API_KEY, temperature=0.2)
                 response = await llm.ainvoke([HumanMessage(content=compare_prompt)])
                 summary = response.content
             else:
@@ -462,8 +462,8 @@ Create a comparison table and summary. Cite specific content from each document.
         page_text = page.text_content or page.ocr_text or "No text content found on this page."
         
         try:
-            if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY != "your-openai-api-key":
-                from langchain_openai import ChatOpenAI
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY != "your-google-api-key":
+                from langchain_google_genai import ChatGoogleGenerativeAI
                 from langchain.schema import HumanMessage
                 
                 prompt = f"""Analyze this page content and provide:
@@ -477,7 +477,7 @@ Create a comparison table and summary. Cite specific content from each document.
 Page content:
 {page_text[:5000]}"""
                 
-                llm = ChatOpenAI(model=settings.LLM_MODEL, api_key=settings.OPENAI_API_KEY, temperature=0.2)
+                llm = ChatGoogleGenerativeAI(model=settings.LLM_MODEL, google_api_key=settings.GOOGLE_API_KEY, temperature=0.2)
                 response = await llm.ainvoke([HumanMessage(content=prompt)])
                 explanation = response.content
             else:

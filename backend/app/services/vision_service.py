@@ -33,7 +33,7 @@ class VisionService:
         
         # Step 2: Vision model analysis
         try:
-            if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY != "your-openai-api-key":
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY != "your-google-api-key":
                 analysis = await self._vision_llm_analysis(image_path, query)
                 result["analysis"] = analysis
                 result["confidence_score"] = 0.85
@@ -81,10 +81,10 @@ class VisionService:
         ext = os.path.splitext(image_path)[1].lower()
         mime_type = "image/png" if ext == ".png" else "image/jpeg"
         
-        from langchain_openai import ChatOpenAI
+        from langchain_google_genai import ChatGoogleGenerativeAI
         from langchain.schema import HumanMessage
         
-        llm = ChatOpenAI(model="gpt-4o", api_key=settings.OPENAI_API_KEY, temperature=0.2)
+        llm = ChatGoogleGenerativeAI(model="gemini-3.8-flash", google_api_key=settings.GOOGLE_API_KEY, temperature=0.2)
         
         message = HumanMessage(
             content=[
